@@ -14,7 +14,7 @@ import * as firebase from 'firebase';
 import Link from '../../components/Link';
 
   export function  FetchAllPublishedproduct() {
-    return function (dispatch) {
+
       var productallid = [];
         firebase.database().ref('data').orderByChild('tissue').on("child_added", (snapshot) => {
               let product = snapshot.val();
@@ -29,14 +29,12 @@ import Link from '../../components/Link';
                 tissue: product.tissue,
                 title:product.title,
               });
-
-              dispatch({
-                type: "ALLPRODUCTDETAILS",
-                payload: {
-                  products : productallid
-                }
-              });
-
         });
-    }
+
+        console.log(productallid, 'productallid');
+
+        // return(
+        //   productallid
+        // )
+
 }

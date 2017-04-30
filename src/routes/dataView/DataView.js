@@ -12,6 +12,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './DataView.css';
+import Alphabet from './components/Alphabet';
+
 
 class DataView extends React.Component {
   static propTypes = {
@@ -26,6 +28,9 @@ class DataView extends React.Component {
             <div style={{marginTop: 20}}>
 
               <iframe  frameBorder="0" style={{height: 100, width: '100%'}}></iframe>
+              <svg width="800" height="600">
+                   <Alphabet x="32" y="300" />
+              </svg>
 
           </div>
         </div>
