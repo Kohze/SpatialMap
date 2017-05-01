@@ -5,6 +5,7 @@ import s from './Datasets.css';
 import * as firebase from 'firebase';
 import Link from '../../components/Link';
 import FetchAllPublishedproduct from './functions.js';
+import Datasetchild from './Datasetchild.js';
 
 
 class Datasets extends React.Component {
@@ -13,11 +14,16 @@ class Datasets extends React.Component {
     title: PropTypes.string.isRequired,
   };
 
-/*
-  function FetchAllPublishedproduct() {
+
+
+  componentWillMount(){
+
       var productallid = [];
+
         firebase.database().ref('data').orderByChild('tissue').on("child_added", (snapshot) => {
               let product = snapshot.val();
+
+              // console.log(product,'snapshot.val()');
               productallid.push({
                 Description: product.Description,
                 author: product.author,
@@ -28,22 +34,31 @@ class Datasets extends React.Component {
                 species: product.species,
                 tissue: product.tissue,
                 title:product.title,
+                varName: product.varName,
               });
         });
-}
 
-  componentDidMount(){
-     console.log(FetchAllPublishedproduct(),'check');
+        this.setState({
+          productallid
+        })
   }
-*/
+
+
   render() {
+
+    //console.log(this.state.productallid, 'productallid');
+    // if(this.state.productallid != []){
+    var DataSetItem = this.state.productallid.map((detail)=>{
+         <Datasetchild item = {detail} />
+
+    })
+   //}
+
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1>{this.props.title}</h1>
-          <div style={{height: 200, width: 200, backgroundColor: 'grey'}}>
-            <Link to='/dataView'><button> example dataset </button></Link>
-          </div>
+          {DataSetItem}
         </div>
       </div>
     );

@@ -60,6 +60,7 @@ class Profile extends React.Component {
           <h1>{this.props.title}</h1>
             Email: {email}
             <br/>
+            <h2> profile.providerId </h2>
             <button onClick={this.deleteAccount.bind(this)}> delete account </button>
         </div>
       </div>
